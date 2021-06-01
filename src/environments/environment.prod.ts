@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://mentcol.com'
+  serverUrl: 'http://localhost:8080'
 };
