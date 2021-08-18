@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="text-center login">
+    <form class="form-signin" (ngSubmit)="onSubmit(form)" [formGroup]="form" *ngIf="formCreated | async">
+        <fieldset>
+            <legend>Inicio de sesión</legend>
+            <div class="form-field">
+                <input class="form-control" name="email" formControlName="email" placeholder="Username">
+            </div>
+            <div class="form-field">
+                <input type="password" class="form-control" name="password" formControlName="password" placeholder="Contraseña">
+            </div>
+        </fieldset>
+        <div class="form-buttons">
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar sesión">
+        </div>
+    </form>
+</div>

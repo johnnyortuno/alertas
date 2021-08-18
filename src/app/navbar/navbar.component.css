@@ -1,0 +1,23 @@
+.sidebar-color-backgroud
+{
+    background-color: #4a98f7;
+    height: 70px;
+}
+
+.center-text-header
+{
+    width: 50%;
+  text-align: center;
+  font-size: 33px;
+}
+.text-right-header
+{
+    width: 20%;
+  text-align: right;
+  font-size: 20px;
+}
+
+.text-left-Empresa
+{
+   font-size: xxx-large;
+}

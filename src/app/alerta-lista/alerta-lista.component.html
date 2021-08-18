@@ -1,0 +1,48 @@
+<h2 class="subtitulo">Resumen</h2>
+<div style="text-align: center;">
+    <form [formGroup]="detalleform" class="editar">
+        <div class="mb-3">
+            <label for="grupo" class="form-label">Grupo</label>
+            <select class="form-select" formControlName="grupo" id="grupo">
+                <option *ngFor="let grupo of _grupos" value="{{grupo.id}}">{{grupo.nombre}}</option>
+            </select>
+        </div>
+        <button type="button" (click)="onSubmit()" class="btn btn-primary">Buscar</button>
+    </form>
+</div>
+
+<div style="display:block; text-align: center; ">
+    <canvas baseChart 
+      [data]="pieChartData" 
+      [labels]="pieChartLabels" 
+      [chartType]="pieChartType"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [colors]="pieChartColor"
+      [legend]="pieChartLegend">
+    </canvas>
+  </div>
+ 
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ejecutadas</th>
+                <th scope="col">Proximas a vencer</th>
+                <th scope="col">Vencidas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let alerta of data">
+                <td >{{alerta.ID}}</td>
+                <td>{{alerta.nombre}}</td>
+                <td [ngStyle]="{'background-color': alerta.ejecutadas>0? '#006600' : 'none'}" >{{alerta.ejecutadas}}</td>
+                <td [ngStyle]="{'background-color': alerta.porvencerAmarillo>0? '#ffff00' : 'none'}" >{{alerta.porvencerAmarillo}}</td>
+                <td [ngStyle]="{'background-color': alerta.vencidas>0? '#FF0000' : 'none'}">{{alerta.vencidas}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

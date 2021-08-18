@@ -1,0 +1,107 @@
+
+<div *ngIf="_userLoaded | async">
+    <h2 *ngIf="!_new" class="subtitulo">Editar usuario {{_user.name}} {{_user.surname}}</h2>
+    <h2 *ngIf="_new" class="subtitulo">Añadir nuevo usuario</h2>
+    
+    <div *ngIf="_success" class="alert alert-success" role="alert">El usuario se guardó correctamente.</div>
+    <div *ngIf="_error" class="alert alert-danger" role="alert">Ocurrió un error al guardar el usuario.</div>
+    <div *ngIf="_invalid" class="alert alert-danger" role="alert">Hay un error en el formulario. Revise que todos los campos estén llenos.</div>
+
+    <form class="editar" (ngSubmit)="onSubmit(form)" [formGroup]="form" *ngIf="formCreated | async">
+        <div class="mb-3" *ngIf="!_new" >
+            <label for="id" class="form-label">Id</label>
+            <input type="text" readonly class="form-control" id="id" formControlName="id">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <!--input *ngIf="!_new" type="text" class="form-control" id="name" name="name" value="{{_user.name}}">
+            <input *ngIf="_new" type="text" class="form-control" id="name"-->
+            <input type="text" class="form-control" id="name" formControlName="name" required>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="name.errors?.required">Este campo es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="surname" class="form-label">Apellido</label>
+            <!--input *ngIf="!_new" type="text" class="form-control" id="surname" name="surname" value="{{_user.surname}}">
+            <input *ngIf="_new" type="text" class="form-control" id="surname"-->
+            <input type="text" class="form-control" id="surname" formControlName="surname" required>
+            <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="surname.errors?.required">Este campo es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <!--input *ngIf="!_new" type="email" class="form-control" id="email" name="email" value="{{_user.email}}">
+            <input *ngIf="_new" type="email" class="form-control" id="email"-->
+            <input type="email" class="form-control" id="email" formControlName="email" required>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="email.errors?.required">Este campo es obligatorio</div>
+                <div *ngIf="email.errors?.email">Ingrese un correo electrónico válido</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="rol" class="form-label">Rol</label>
+            <!--select *ngIf="!_new" class="form-select" id="rol" name="rol">
+                <ng-container *ngFor="let rol of _roles">
+                    <option *ngIf="rol.id == _user.rol_id" value="{{rol.id}}" selected>{{rol.name}}</option>
+                    <option *ngIf="rol.id != _user.rol_id" value="{{rol.id}}">{{rol.name}}</option>
+                </ng-container>
+            </select>
+            <select *ngIf="_new" class="form-select" id="rol" name="rol">
+                <ng-container *ngFor="let rol of _roles">
+                    <option value="{{rol.id}}">{{rol.name}}</option>
+                </ng-container>
+            </select-->
+            <select class="form-select" id="rol" name="rol_id" formControlName="rol_id" required>
+                <ng-container *ngFor="let rol of _roles">
+                    <option value="{{rol.id}}">{{rol.name}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <!--input *ngIf="!_new" type="text" readonly class="form-control" id="username" name="username" value="{{_user.username}}">
+            <input *ngIf="_new" type="text" class="form-control" id="username"-->
+            <input type="text" class="form-control" id="username" formControlName="username" required>
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="username.errors?.required">Este campo es obligatorio</div>
+            </div>
+        </div>
+        <div *ngIf="_new" class="form-group row" formGroupName="passwords">
+            <div class="mb-3">
+                <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+                <!--input type="password" class="form-control" id="password" name="password"-->
+                <input type="password" class="form-control" id="password" name="password" formControlName="password">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger validation-alert">
+                    <div *ngIf="password.errors?.required">Este campo es obligatorio</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password2" class="form-label">Repite la contraseña</label>
+                <!--input type="password" class="form-control" id="password1" name="password1"-->
+                <input type="password" class="form-control" id="password2" name="password2" formControlName="password2" required>
+                <div *ngIf="password2.invalid && (password2.dirty || password2.touched)" class="alert alert-danger validation-alert">
+                    <div *ngIf="password2.errors?.required">Este campo es obligatorio</div>
+                </div>
+                <div *ngIf="password.value != password2.value && (password2.dirty || password2.touched)" class="alert alert-danger validation-alert">
+                    <div *ngIf="password.value != password2.value">Las contraseñas no coinciden</div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <!--input *ngIf="_new || (!_new && _user.activo)" class="form-check-input" type="checkbox" id="activo" checked>
+                <input *ngIf="!_new && !_user.activo" class="form-check-input" type="checkbox" id="activo"-->
+                <input class="form-check-input" type="checkbox" id="activo" formControlName="activo">
+                <label class="form-check-label" for="activo">Activo</label>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Guardar">
+
+        <div *ngIf="_success" class="alert alert-success" role="alert">El usuario se guardó correctamente.</div>
+        <div *ngIf="_error" class="alert alert-danger" role="alert">Ocurrió un error al guardar el usuario.</div>
+        <div *ngIf="_invalid" class="alert alert-danger" role="alert">Hay un error en el formulario. Revise que todos los campos estén llenos.</div>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<h2 class="subtitulo">Lista de permisos registrados</h2>
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Permiso</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let permiso of _permisos">
+                <td>{{permiso.id}}</td>
+                <td>{{permiso.name}}</td>
+                <td>
+                    <a [routerLink]="['/permisos', permiso.id]">Editar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

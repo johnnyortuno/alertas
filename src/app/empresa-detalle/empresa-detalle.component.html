@@ -1,0 +1,44 @@
+
+<div *ngIf="_empresaLoaded | async">
+    <h2 *ngIf="!_new" class="subtitulo">Editar empresa {{_empresa.name}}</h2>
+    <h2 *ngIf="_new" class="subtitulo">Añadir nueva empresa</h2>
+
+    <div *ngIf="_success" class="alert alert-success" role="alert">La empresa se guardó correctamente.</div>
+    <div *ngIf="_error" class="alert alert-danger" role="alert">Ocurrió un error al guardar la empresa.</div>
+    <div *ngIf="_invalid" class="alert alert-danger" role="alert">Hay un error en el formulario. Revise que todos los campos estén llenos.</div>
+
+    <form class="editar" (ngSubmit)="onSubmit(form)" [formGroup]="form" *ngIf="formCreated | async">
+        <div class="mb-3" *ngIf="!_new" >
+            <label for="id" class="form-label">Id</label>
+            <input type="text" readonly class="form-control" id="id" formControlName="id">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Empresa</label>
+            <!--input *ngIf="!_new" type="text" class="form-control" id="name" name="name" value="{{_empresa.name}}">
+            <input *ngIf="_new" type="text" class="form-control" id="name"-->
+            <input type="text" class="form-control" id="name" formControlName="name" required>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="name.errors?.required">Este campo es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="numero_identificacion" class="form-label">Numero Identificacion</label>
+            <!--input *ngIf="!_new" type="text" class="form-control" id="name" name="name" value="{{_empresa.name}}">
+            <input *ngIf="_new" type="text" class="form-control" id="name"-->
+            <input type="text" class="form-control" id="numero_identificacion" formControlName="numero_identificacion" required>
+            <div *ngIf="numero_identificacion.invalid && (numero_identificacion.dirty || numero_identificacion.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="numero_identificacion.errors?.required">Este campo es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <!--input *ngIf="_new || (!_new && _empresa.activo)" class="form-check-input" type="checkbox" id="activo" checked>
+                <input *ngIf="!_new && !_empresa.activo" class="form-check-input" type="checkbox" id="activo"-->
+                <input class="form-check-input" type="checkbox" id="activo" formControlName="activo">
+                <label class="form-check-label" for="activo">Activo</label>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Guardar">
+    </form>
+</div>

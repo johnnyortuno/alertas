@@ -1,0 +1,26 @@
+<h2 class="subtitulo">Lista de niveles registrados</h2>
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nivel</th>
+                <th scope="col">Color</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let nivel of _niveles">
+                <td>{{nivel.id}}</td>
+                <td>{{nivel.name}}</td>
+                <td>{{nivel.color}}</td>
+                <td *ngIf="nivel.activo">Sí</td>
+                <td *ngIf="!nivel.activo">No</td>
+                <td>
+                    <a [routerLink]="['/niveles/editar', nivel.id]">Editar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

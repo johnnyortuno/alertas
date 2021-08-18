@@ -1,0 +1,25 @@
+<h2 class="subtitulo">Lista de roles registrados</h2>
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rol of _roles">
+                <td>{{rol.id}}</td>
+                <td>{{rol.name}}</td>
+                <td *ngIf="rol.activo">Sí</td>
+                <td *ngIf="!rol.activo">No</td>
+                <td>
+                    <a [routerLink]="['/roles/editar', rol.id]">Editar</a>
+                    <a [routerLink]="['/roles/permisos', rol.id]">Editar permisos</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

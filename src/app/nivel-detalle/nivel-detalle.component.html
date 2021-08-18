@@ -1,0 +1,44 @@
+
+<div *ngIf="_nivelLoaded | async">
+    <h2 *ngIf="!_new" class="subtitulo">Editar nivel {{_nivel.name}}</h2>
+    <h2 *ngIf="_new" class="subtitulo">Añadir nuevo nivel</h2>
+
+    <div *ngIf="_success" class="alert alert-success" role="alert">El nivel se guardó correctamente.</div>
+    <div *ngIf="_error" class="alert alert-danger" role="alert">Ocurrió un error al guardar el nivel.</div>
+    <div *ngIf="_invalid" class="alert alert-danger" role="alert">Hay un error en el formulario. Revise que todos los campos estén llenos.</div>
+
+    <form class="editar" (ngSubmit)="onSubmit(form)" [formGroup]="form" *ngIf="formCreated | async">
+        <div class="mb-3" *ngIf="!_new" >
+            <label for="id" class="form-label">Id</label>
+            <input type="text" readonly class="form-control" id="id" formControlName="id">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nivel</label>
+            <!--input *ngIf="!_new" type="text" class="form-control" id="name" name="name" value="{{_nivel.name}}">
+            <input *ngIf="_new" type="text" class="form-control" id="name"-->
+            <input type="text" class="form-control" id="name" formControlName="name" required>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="name.errors?.required">Este campo es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Color</label>
+            <!--input *ngIf="!_new" type="text" class="form-control" id="name" name="name" value="{{_nivel.color}}">
+            <input *ngIf="_new" type="text" class="form-control" id="name"-->
+            <input type="text" class="form-control" id="color" formControlName="color" required>
+            <div *ngIf="color.invalid && (color.dirty || color.touched)" class="alert alert-danger validation-alert">
+                <div *ngIf="color.errors?.required">Este campo es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <!--input *ngIf="_new || (!_new && _nivel.activo)" class="form-check-input" type="checkbox" id="activo" checked>
+                <input *ngIf="!_new && !_nivel.activo" class="form-check-input" type="checkbox" id="activo"-->
+                <input class="form-check-input" type="checkbox" id="activo" formControlName="activo">
+                <label class="form-check-label" for="activo">Activo</label>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Guardar">
+    </form>
+</div>

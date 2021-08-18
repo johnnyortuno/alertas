@@ -1,0 +1,33 @@
+<h2 class="subtitulo">Lista de alertas</h2>
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Nivel</th>
+                <th *ngIf="rol_id != '3'" scope="col">Usuario</th>
+                <th scope="col">Fecha de creación</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let notificacion of _notificaciones">
+                <td>{{notificacion.id}}</td>
+                <td>{{notificacion.mensaje}}</td>
+                <td>{{notificacion.nivel_name}}</td>
+                <td *ngIf="rol_id != '3'">
+                    <a [routerLink]="['/usuarios/editar', notificacion.creador_id]">{{notificacion.user_name}} {{notificacion.user_surname}}</a>
+                </td>
+                <td>{{notificacion.fecha_creacion | date}}</td>
+                <td *ngIf="notificacion.activo">Sí</td>
+                <td *ngIf="!notificacion.activo">No</td>
+                <td>
+                    <a *ngIf="rol_id != '3'" [routerLink]="['/notificaciones/editar', notificacion.id]">Editar</a>
+                    <a *ngIf="rol_id == '3'" [routerLink]="['/notificaciones/detalle', notificacion.id]">Ver detalle</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,32 @@
+<h2 class="subtitulo">Editar</h2>
+<form class="editar" [formGroup]="detalleform"  >
+    <div class="mb-3" >
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <input id="mensaje" type="text" class="form-control" readonly
+            formControlName="mensaje">
+    </div>
+    <div class="mb-3" >
+        <label for="grupo" class="form-label">Grupo</label>
+        <input id="grupo" type="text" class="form-control" readonly
+            formControlName="grupo">
+    </div>
+    <div class="mb-3" >
+        <label for="familia" class="form-label">Familia</label>
+        <input id="familia" type="text" class="form-control" readonly
+            formControlName="familia">
+    </div>
+    <div class="mb-3" >
+        <label for="fecha" class="form-label">Fecha</label>
+        <input id="fecha" type="text" class="form-control" readonly
+            formControlName="fecha">
+    </div>
+    <div class="mb-3">
+        <div class="form-check form-switch">
+             <input class="form-check-input" type="checkbox" id="estado" formControlName="estado">
+            <label class="form-check-label" for="estado">Activo</label>
+            
+        </div>
+    </div>
+    <button type="button" (click)="onSubmit()" class="btn btn-primary">Guardar</button>
+</form>
+

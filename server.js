@@ -1,14 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
-const api = require('./api');
+const api = require('./back_app/api');
 
 //Connection to DB
 const connection = mysql.createConnection({
-    host     : '157.90.212.183',
-    user     : 'mentcol_alertador',
-    password : 'G7.WTM.41kp',
-    database : 'mentcol_alertas'
+    host     : '186.3.156.52',
+    user     : 'proyectos',
+    password : 'proyectos',
+    database : 'alertas'
 });
 
 connection.connect();

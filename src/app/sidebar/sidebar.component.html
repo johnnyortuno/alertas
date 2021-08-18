@@ -1,0 +1,30 @@
+<nav *ngIf="_menuLoaded | async" id="sidebarMenu">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <ng-container *ngFor="let item of _menu">
+                <li *ngIf="item.active" class="nav-item">
+                    <label class="btn btn-toggle align-items-center rounded nav-link">{{item.name}}</label>
+                    <div *ngIf="item.children" class="collapse show" id="{{item.name}}">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <ng-container *ngFor="let subitem of item.children">
+                                <li *ngIf="subitem.active">
+                                    <a [routerLink]="[subitem.link]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-dark rounded">{{subitem.name}}</a>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </div>
+                </li>
+            </ng-container>
+            <!--li *ngFor="let item of _menu" class="nav-item">
+                <label class="btn btn-toggle align-items-center rounded nav-link">{{item.name}}</label>
+                <div *ngIf="item.children" class="collapse show" id="{{item.name}}">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li *ngFor="let subitem of item.children">
+                            <a [routerLink]="[subitem.link]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-dark rounded">{{subitem.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </li-->
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,18 @@
+<div *ngIf="_userLoaded | async">
+    <h2 class="subtitulo">Editar las empresas a las que pertenece el usuario {{_user.name}} {{_user.surname}}</h2>
+    
+    <div *ngIf="_success" class="alert alert-success" role="alert">Los cambios se guardaron correctamente.</div>
+    <div *ngIf="_error" class="alert alert-danger" role="alert">Ocurrió un error al guardar los cambios.</div>
+    <div *ngIf="_invalid" class="alert alert-danger" role="alert">Debe seleccionar al menos una empresa.</div>
+
+    <form class="editar" (ngSubmit)="onSubmit(form)" [formGroup]="form" *ngIf="formCreated | async">
+        <div class="mb-3">
+            <label for="empresas">Empresas</label>
+            <select class="form-select" multiple formControlName="empresas" id="empresas" [(ngModel)]="selected">
+                <option *ngFor="let empresa of empresas" [value]="empresa.id">{{empresa.name}}</option>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Guardar">
+    </form>
+</div>

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Empresa } from '../models/empresa.model';
+import { Permiso } from '../models/permiso.model';
 import { Session } from '../models/session.model';
 import { User } from '../models/user.model';
 
@@ -47,6 +49,16 @@ export class StorageService {
   getCurrentToken(): string {
     var session = this.getCurrentSession();
     return (session && session.token) ? session.token : null;
+  };
+
+  getCurrentPermisos(): Permiso[] {
+    var session = this.getCurrentSession();
+    return (session && session.permisos) ? session.permisos : null;
+  };
+
+  getCurrentEmpresas(): Empresa[] {
+    var session = this.getCurrentSession();
+    return (session && session.empresas) ? session.empresas : null;
   };
 
   logout(): void {

@@ -1,0 +1,34 @@
+<h2 class="subtitulo">Lista de usuarios registrados</h2>
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of _users">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.rol_name}}</td>
+                <td *ngIf="user.activo">Sí</td>
+                <td *ngIf="!user.activo">No</td>
+                <td>
+                    <a [routerLink]="['/usuarios/editar', user.id]">Editar</a>
+                    <a [routerLink]="['/usuarios/empresas', user.id]">Editar empresas</a>
+                    <!--a [routerLink]="['/usuarios/editar', user.id]">Reestablecer contraseña</a-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

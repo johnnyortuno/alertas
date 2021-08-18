@@ -1,0 +1,28 @@
+<h2 class="subtitulo">Lista de ejecuciones</h2>
+
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Mensaje</th>
+                <th scope="col">Familia</th>
+                <th scope="col">Grupo</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ejecucion of data">
+                <td>{{ ejecucion.id }}</td>
+                <td>{{ ejecucion.mensaje }}</td>
+                <td>{{ ejecucion.familia }}</td>
+                <td>{{ ejecucion.grupo }}</td>
+                <td>{{ ejecucion.fecha }}</td>
+                <td>
+                    <a [routerLink]="['/ejecuciones/editar', ejecucion.id]">Editar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
